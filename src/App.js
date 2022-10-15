@@ -7,7 +7,8 @@ import './App.css';
 function App() {
 
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0)
+  const [highScore, setHighScore] = useState(0);
+  const [trigger, setTrigger] = useState(true);
 
   const getScore = (state)=>{
     if(state){
@@ -15,6 +16,10 @@ function App() {
      }else{
       setScore(0)
      }
+    }
+
+    const triggerToggle = ()=>{
+      setTrigger(!trigger)
     }
 
   useEffect(()=>{
@@ -25,10 +30,29 @@ function App() {
 
   return (
     <div className="App">
+      <Popup trigger={trigger} close={triggerToggle} />
       <Header score={score} highScore={highScore} />
       <Board updateScore={getScore} />
     </div>
   );
+}
+
+const Popup = (props)=>{
+  return (
+    <div>
+      {props.trigger? (
+            <div className="popup">
+            <div className="popup-inner">
+              <img src={process.env.PUBLIC_URL+"/images/avangers.jpg"} alt="" />
+              <h5>Memory Game</h5>
+              <p>Get points by clicking on an image but don't click on any more than once!</p>
+              <button onClick={props.close} >OK</button>
+            </div>
+          </div>
+      ):""
+    }
+    </div>
+  )
 }
 
 export default App;
