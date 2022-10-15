@@ -5,14 +5,14 @@ const Header = (props)=>{
     return(
         <div className="header">
             <div className="score">
-                <p>Score:0</p>
+                <p>Score:{props.score}</p>
             </div>
             <div>
             <img src={process.env.PUBLIC_URL+"/images/avangers.jpg"} alt="image" />
             <p>Memory Game</p>
             </div>
             <div className="score">
-                <p>HighScore:0</p>
+                <p>HighScore:{props.highScore}</p>
             </div>
         </div>
     )
